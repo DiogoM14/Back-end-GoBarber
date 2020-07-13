@@ -1,65 +1,25 @@
-import Transaction from '../models/Transaction';
+import Appointment from '../models/Appointement';
 
-interface Balance {
-  income: number;
-  outcome: number;
-  total: number;
-}
+interface CreateAppointmentDTO {}
 
-interface CreateTransactionDTO {
-  title: string;
-  value: number;
-  type: 'income' | 'outcome';
-}
-
-class TransactionsRepository {
-  private transactions: Transaction[];
+class AppointmentsRepository {
+  private appointments: Appointment[];
 
   constructor() {
-    this.transactions = [];
+    this.appointments = [];
   }
 
-  public all(): Transaction[] {
-    return this.transactions;
+  public all(): Appointment[] {
+    return this.appointments;
   }
 
-  public getBalance(): Balance {
-    const { income, outcome } = this.transactions.reduce(
-      (accumulator: Balance, transaction: Transaction) => {
-        switch (transaction.type) {
-          case 'income':
-            accumulator.income += transaction.value;
-            break;
-          case 'outcome':
-            accumulator.outcome += transaction.value;
-            break;
-          default:
-            break;
-        }
+  public create({}: CreateAppointmentDTO): Appointment {
+    const appointment = new Appointment({});
 
-        return accumulator;
-      },
-      {
-        income: 0,
-        outcome: 0,
-        total: 0,
-      },
-    );
-    const total = income - outcome;
-    return { income, outcome, total };
-  }
+    this.appointments.push(appointment);
 
-  public create({ title, value, type }: CreateTransactionDTO): Transaction {
-    const transaction = new Transaction({
-      title,
-      value,
-      type,
-    });
-
-    this.transactions.push(transaction);
-
-    return transaction;
+    return appointment;
   }
 }
 
-export default TransactionsRepository;
+export default AppointmentsRepository;
