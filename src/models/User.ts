@@ -9,16 +9,19 @@ import {
 // Column =>
 // PrimaryGeneratedColumn => É utilizado no id pois é a chave primária da tabela e é gerado de forma automática
 
-@Entity('appointments') // Entity decorator é como uma função que envia como parâmetro envia a class
-class Appointement {
+@Entity('users') // Entity decorator é como uma função que envia como parâmetro envia a class
+class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column() // Utiliza varchar deafult
-  provider: string;
+  name: string;
 
-  @Column('timestamp with time zone')
-  date: Date;
+  @Column() // Utiliza varchar deafult
+  email: string;
+
+  @Column() // Utiliza varchar deafult
+  password: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -27,4 +30,4 @@ class Appointement {
   updated_at: Date;
 }
 
-export default Appointement;
+export default User;
