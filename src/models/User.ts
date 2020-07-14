@@ -14,13 +14,13 @@ class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column() // Utiliza varchar deafult
+  @Column() // Utiliza varchar default
   name: string;
 
-  @Column() // Utiliza varchar deafult
+  @Column() // Utiliza varchar default
   email: string;
 
-  @Column() // Utiliza varchar deafult
+  @Column() // Utiliza varchar default
   password: string;
 
   @CreateDateColumn()
