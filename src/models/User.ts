@@ -23,6 +23,9 @@ class User {
   @Column() // Utiliza varchar default
   password: string;
 
+  @Column() // Utiliza varchar default
+  avatar: string;
+
   @CreateDateColumn()
   created_at: Date;
 
